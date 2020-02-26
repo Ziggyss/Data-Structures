@@ -74,9 +74,13 @@ class BinarySearchTree:
     # You may use a recursive or iterative approach
     def for_each(self, cb):
         #BASE CASE - empty tree
-        if self.value == None:
-            return None
-        elif self.left    
+        if self.left:
+            self.left.for_each(cb)
+        if self.right:
+            self.right.for_each(cb)
+        cb(self.value) 
+    # Question for Pascal: when I tried to return on line 78 and 80, the tests fail. In previous methods return is needed on the recursive functions but I don't fully understand why it is used there and in other cases not.          
+
 
 
 
