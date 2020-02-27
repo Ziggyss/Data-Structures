@@ -79,7 +79,51 @@ class BinarySearchTree:
         if self.right:
             self.right.for_each(cb)
         cb(self.value) 
-    # Question for Pascal: when I tried to return on line 78 and 80, the tests fail. In previous methods return is needed on the recursive functions but I don't fully understand why it is used there and in other cases not.          
+    # Question for Pascal: when I tried to return on line 78 and 80, the tests fail. In previous methods return is needed on the recursive functions but I don't fully understand why it is used there and in other cases not.         
+
+    def dft_for_each_i(self, cb):
+        #Create an empty stack
+        stack = Stack()
+        # push self onto stack
+        stack.push(self)
+
+        # iterate over the stack
+        while stack.len() > 0:
+            # pop the stack off into current node
+            current_node = stack.pop()
+            # check if node to left
+            if current_node.left: 
+                # push the current node's left child onto the stack
+                stack.push(current_node.left)
+
+            # check if node to right
+            if current_node.right:
+                # push the node to the right onto the stack
+                stack.push(current_node.right)
+            # invoke callback on the value of the current node 
+            cb(current_node.value)
+
+    def bft_for_each_i(self, cb):
+        #Create an empty stack
+        q= Queue()
+        # push self onto stack
+        q.enqueue(self)
+
+        # iterate over the stack
+        while q.len() > 0:
+            # pop the stack off into current node
+            current_node = q.dequeue()
+            # check if node to left
+            if current_node.left: 
+                # push the current node's left child onto the stack
+                q.enqueue(current_node.left)
+
+            # check if node to right
+            if current_node.right:
+                # push the node to the right onto the stack
+                q.enqueue.push(current_node.right)
+            # invoke callback on the value of the current node 
+            cb(current_node.value)
 
 
 
@@ -90,17 +134,64 @@ class BinarySearchTree:
     # Print all the values in order from low to high
     # Hint:  Use a recursive, depth first traversal
     def in_order_print(self, node):
-        pass
+        current_node = node
+        if current_node.left:
+            self.in_order_print(current_node.left)
+        print(current_node.value)    
+        if current_node.right:
+            self.in_order_print(current_node.right) 
+        # print(current_node.value)   
+        
 
     # Print the value of every node, starting with the given node,
     # in an iterative breadth first traversal
     def bft_print(self, node):
-        pass
+        
+    # Create an empty queue
+        q = Queue()
+    # Add the starting node to the queue
+        q.enqueue(node)
+
+    # Iterate over the queue
+        while q.len() > 0:
+        # set the current_node to the first item in the queue
+            current_node = q.dequeue()  
+        # the print the current value
+            print(current_node.value)
+        # if the current node has a left child
+            if current_node.left:
+            # call enqueue on the current left
+                q.enqueue(current_node.left)
+        # if the current node has a right child
+            if current_node.right:
+            # call enqueue on the current right
+                q.enqueue(current_node.right)
+
 
     # Print the value of every node, starting with the given node,
     # in an iterative depth first traversal
     def dft_print(self, node):
-        pass
+        # Create an empty stack
+        s = Stack()
+    # Add the starting node to the stack
+        current_node = s.push(node)
+
+    # Iterate over the stack
+        while s.len() > 0:
+        # set the current_node to the first item in the stack
+            current_node = s.pop()
+        # the print the current value
+            print(current_node.value)
+        # if the current node has a left child
+            if current_node.left:
+            # call push on the current left
+                s.push(current_node.left)
+        # if the current node has a right child
+            if current_node.right:
+            # call push on the current right
+                s.push(current_node.right)
+        
+       
 
     # STRETCH Goals -------------------------
     # Note: Research may be required
