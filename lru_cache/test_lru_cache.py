@@ -30,7 +30,7 @@ class CacheTests(unittest.TestCase):
         self.assertIsNone(self.cache.get('item2'))
 
     def test_cache_nonexistent_retrieval(self):
-        self.assertIsNone(self.cache.get('nonexistent'))
+         self.assertIsNone(self.cache.get('nonexistent'))
 
 
 if __name__ == '__main__':
